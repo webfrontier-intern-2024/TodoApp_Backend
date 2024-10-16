@@ -1,3 +1,4 @@
-docker-compose.yml
 Dockerfile
-/Myenv
+.venv
+/migrate/env.py
+alembic.ini
