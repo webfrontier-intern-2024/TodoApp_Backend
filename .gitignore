@@ -1,4 +1,5 @@
-Dockerfile
+# Byte-compiled / optimized / DLL files
 .venv
-/migrate/env.py
+.env
 alembic.ini
+server/migrate/env.py  # 先頭にスラッシュを追加してパスを明示
