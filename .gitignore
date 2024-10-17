@@ -1,4 +1,7 @@
-Dockerfile
+# Byte-compiled / optimized / DLL files
 .venv
-/migrate/env.py
+.env
 alembic.ini
+/server/src/migration/env.py
+/server/src/migration/versions
+/server/src/migration/__pycache__
