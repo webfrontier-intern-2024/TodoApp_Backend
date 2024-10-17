@@ -2,4 +2,6 @@
 .venv
 .env
 alembic.ini
-server/migrate/env.py  # 先頭にスラッシュを追加してパスを明示
+/server/src/migration/env.py
+/server/src/migration/versions
+/server/src/migration/__pycache__
