@@ -5,3 +5,5 @@ alembic.ini
 /server/src/migration/env.py
 /server/src/migration/versions
 /server/src/migration/__pycache__
+.$ER.drawio.bkp
+.$ER.drawio.dtmp
