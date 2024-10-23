@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from server.src.sql.dbSettings import SessionLocal, todoLists
 
 
-def get_all_todo_items():
+def getAllTodoItems():
     # セッションを作成
     db: Session = SessionLocal()
     try:

@@ -7,7 +7,9 @@ content %}
     {% for todo in todos %}
     <div class="bg-red-300 p-4 mt-4 rounded-2xl">
       <li class="mb-2 list-none">
-        <a class="text-blue-600" href="/{{ todo.id }}">{{ todo.title }}</a>
+        <a class="text-blue-600" href="/todo/{{ todo.todoID }}"
+          >{{ todo.taskName }}</a
+        >
         <p class="text-gray-600">{{ todo.description }}</p>
         <p class="text-gray-600">{{ todo.createdAt }}</p>
       </li>
