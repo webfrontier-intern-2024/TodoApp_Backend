@@ -8,6 +8,7 @@ import sqlalchemy
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
+from sql.get import getAllTodoItems
 
 from sql.dbSettings import Base, Engine
 
@@ -26,15 +27,15 @@ session = DBsession()
 
 fake_todo_list = [
     {
-        "id": uuid4(),
-        "title": "買い物に行く",
+        "todoID": uuid4(),
+        "taskName": "買い物に行く",
         "description": "牛乳と卵を買う",
         "createdAt": datetime.now(),
         "updatedAt": datetime.now(),
     },
     {
-        "id": uuid4(),
-        "title": "運動する",
+        "todoID": uuid4(),
+        "taskName": "運動する",
         "description": "30分ジョギングする",
         "createdAt": datetime.now(),
         "updatedAt": datetime.now(),
@@ -43,9 +44,15 @@ fake_todo_list = [
 
 
 # レスポンスの形式を設定する必要がある
+# get処理
 @app.get("/", response_class=HTMLResponse)
-def root():
-    return RedirectResponse("/todo?skip={skip}&limit={limit}&completed={completed}")
+def root(
+    skip: int = 0,
+    limit: int = 10,
+    completed: bool = False,
+):
+    # リダイレクト処理成功
+    return RedirectResponse(f"/todo?skip={skip}&limit={limit}&completed={completed}")
 
 
 @app.get(
@@ -54,29 +61,40 @@ def root():
 )
 def mainPage(
     request: Request,
-    skip=0,
-    limit=10,
-    completed=False,
 ):
-    todos = {"request": request, "todos": fake_todo_list}
+    todos = {
+        "request": request,
+        "todos": fake_todo_list,
+    }
     return templates.TemplateResponse("index.html", todos)
 
 
-@app.get("/todo/{todo_id}", response_class=HTMLResponse)
-def detail(request: Request, todo_id: uuid4):
-    todo = {"request": request, "todo": fake_todo_list[todo_id]}
+@app.get("/todo/{todoID}", response_class=HTMLResponse)
+def detail(request: Request, todoID: uuid4):
+
+    todo = {"request": request, "todo": fake_todo_list}
     return templates.TemplateResponse("todo.html", todo)
 
 
+# Todo作成用のページ遷移用エンドポイント
+@app.get("/createTodo", response_class=HTMLResponse)
+def createTodoPage(request: Request):
+    return templates.TemplateResponse("createTodo.html", {"request": request})
+
+
+@app.get("/createTag", response_class=HTMLResponse)
+def createTagPage(request: Request):
+    return templates.TemplateResponse("createTag.html", {"request": request})
+
+
+# POST処理
 @app.post("/todo", response_class=JSONResponse)
 async def creatoeTodoItem(request: Request):
-
     data = await request.json()
     new_todo = {
-        "id": uuid4(),
+        "todoID": uuid4(),
         "taskName": data["taskName"],
         "description": data["description"],
-        "tags": data["tags"],
         "createdAt": datetime.now(),
         "updatedAt": datetime.now(),
     }
@@ -84,12 +102,8 @@ async def creatoeTodoItem(request: Request):
     return JSONResponse(content=new_todo)
 
 
-@app.get("todo/{todo_id}", response_class=HTMLResponse)
-def get_todo_item(todo_id: int, request: Request):
-    todo = {"request": request, "todo": fake_todo_list[todo_id]}
-    return templates.TemplateResponse("todo.html", todo)
-
-
+# BASEファイル
+##########################################
 @app.get("/base", response_class=HTMLResponse)
 def root(request: Request):
     context = {"request": request}
