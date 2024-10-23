@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}メインページ{% endblock %} {% block
+content %}
+<div class="container mx-auto p-4 max-h-min">
+  <h2 class="text-2xl font-bold mb-4">Todoリスト一覧</h2>
+  {% if todos %}
+  <ul class="list-disc pl-5">
+    {% for todo in todos %}
+    <div class="bg-red-300 p-4 mt-4 rounded-2xl">
+      <li class="mb-2 list-none">
+        <a class="text-blue-600" href="/{{ todo.id }}">{{ todo.title }}</a>
+        <p class="text-gray-600">{{ todo.description }}</p>
+        <p class="text-gray-600">{{ todo.createdAt }}</p>
+      </li>
+    </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-gray-600">Todoリストはありません</p>
+  {% endif %}
+</div>
+{% endblock %}
