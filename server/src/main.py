@@ -4,13 +4,12 @@ from fastapi.responses import RedirectResponse
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-import sqlalchemy
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy.orm import sessionmaker
 from sql.get import getAllTodoItems
-
 from sql.dbSettings import Base, Engine
+from sql.dbSettings import todoLists, tags, settings
 
 # Classを作成するためにBaseModelをインポート
 from pydantic import BaseModel
@@ -22,7 +21,7 @@ app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 engine = Engine
 Base.metadata.create_all(engine)
-DBsession = SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
+DBsession = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
 session = DBsession()
 
 fake_todo_list = [
@@ -44,7 +43,7 @@ fake_todo_list = [
 
 
 # レスポンスの形式を設定する必要がある
-# get処理
+# get(htmlレンダリング)処理
 @app.get("/", response_class=HTMLResponse)
 def root(
     skip: int = 0,
@@ -70,10 +69,12 @@ def mainPage(
 
 
 @app.get("/todo/{todoID}", response_class=HTMLResponse)
-def detail(request: Request, todoID: uuid4):
-
-    todo = {"request": request, "todo": fake_todo_list}
-    return templates.TemplateResponse("todo.html", todo)
+def detail(request: Request, todoID: str):
+    # ID検索をして一番最初のものを取得
+    # idCol = session.query(todoLists).filter(todoLists.todoID == todoID).first()
+    idCol = fake_todo_list[0]
+    todo = {"request": request, "todo": idCol}
+    return templates.TemplateResponse("detail.html", todo)
 
 
 # Todo作成用のページ遷移用エンドポイント
@@ -103,7 +104,7 @@ async def creatoeTodoItem(request: Request):
 
 
 # BASEファイル
-##########################################
+##########################################################################
 @app.get("/base", response_class=HTMLResponse)
 def root(request: Request):
     context = {"request": request}
