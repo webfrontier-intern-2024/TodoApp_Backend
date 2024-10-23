@@ -1,0 +1,186 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1114" dy="999" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-46" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="610" as="sourcePoint" />
+            <mxPoint x="840" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="9SUXiFuQ6x9NMpKyhDSF-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="932" y="1672" as="sourcePoint" />
+            <mxPoint x="1157.5" y="2032" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="932.5" y="2032" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-38" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="9SUXiFuQ6x9NMpKyhDSF-28">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1177.5" y="1812" as="sourcePoint" />
+            <mxPoint x="1157.5" y="2032" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1393" y="2030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.854;exitY=0.975;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="OjRCZmDOrxMEn9tFRWj1-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1045.5" y="622" as="sourcePoint" />
+            <mxPoint x="1049.5" y="1014" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.854;exitY=0.975;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1303.37" y="620" as="sourcePoint" />
+            <mxPoint x="1307.5" y="962" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OjRCZmDOrxMEn9tFRWj1-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="OjRCZmDOrxMEn9tFRWj1-35" target="OjRCZmDOrxMEn9tFRWj1-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OjRCZmDOrxMEn9tFRWj1-58" value="TODOを作る&lt;br&gt;(TODO作成ボタン)" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="972.5" y="682" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-1" value="タグ作成ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;あるもの：タグ作成フォーム&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;中身&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;・タグ名&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1214.5" y="812" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-3" value="タグを作る&lt;br&gt;(タグ作成ボタン)" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1229.5" y="682" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OjRCZmDOrxMEn9tFRWj1-35" value="TODO作成ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;あるもの：TODO投稿フォーム&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;フォームの中身&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・TODOの名前&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・TODO内容&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・期限(あれば)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・タグ(新規作成ボタン付き)&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="957.5" y="1142" width="185" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-8" value="タグがあるか" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="975" y="962" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-10" value="スタートに&lt;div&gt;戻る&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1267" y="962" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="9SUXiFuQ6x9NMpKyhDSF-8" target="9SUXiFuQ6x9NMpKyhDSF-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1267.5" y="1142" as="sourcePoint" />
+            <mxPoint x="1317.5" y="1092" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1187.5" y="1002" />
+              <mxPoint x="1187.5" y="722" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-12" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1057.5" y="772" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-13" value="&lt;div style=&quot;font-size: 24px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;条件分岐でNoの部分に&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 24px;&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;何も書いていない場合は&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 24px;&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-wrap: nowrap;&quot;&gt;メインページ&lt;/span&gt;&lt;span style=&quot;text-wrap: nowrap; background-color: initial;&quot;&gt;に戻る&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1402.5" y="560" width="277.5" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-14" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1057.5" y="1052" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-15" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1317.5" y="762" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="OjRCZmDOrxMEn9tFRWj1-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1267.5" y="1012" as="sourcePoint" />
+            <mxPoint x="1160" y="1332" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1050.5" y="1292" />
+              <mxPoint x="1160.5" y="1292" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1160" y="1492" as="sourcePoint" />
+            <mxPoint x="1160.5" y="2142" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-20" value="内容変更ボタン押下" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1085" y="1582" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-21" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="937.5" y="1452" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-22" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1172.5" y="1672" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-24" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;No&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1125" y="962" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-25" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="9SUXiFuQ6x9NMpKyhDSF-28">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1157.5" y="1532" as="sourcePoint" />
+            <mxPoint x="1307.5" y="1522" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1392.5" y="1532" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-27" value="削除ボタン押下" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="857.5" y="1582" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-28" value="完了ボタン押下" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1317.5" y="1582" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-29" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="9SUXiFuQ6x9NMpKyhDSF-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1157.5" y="1532" as="sourcePoint" />
+            <mxPoint x="1362.5" y="1592" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="932.5" y="1532" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-31" value="&lt;span style=&quot;text-align: left;&quot;&gt;メインページ&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: left;&quot;&gt;TODOの一覧が表示される&lt;/span&gt;&lt;div style=&quot;text-align: left;&quot;&gt;あるもの：枠内にTODO一覧が表示&lt;br&gt;・タスクバー(変更・完了・削除ボタン)&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1007.5" y="1422" width="310" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-32" value="TODO作成確認ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;あるもの：打ち込んだ内容&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1070" y="1332" width="185" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-33" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="9SUXiFuQ6x9NMpKyhDSF-32" target="9SUXiFuQ6x9NMpKyhDSF-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1207.5" y="1402" as="sourcePoint" />
+            <mxPoint x="1162.5" y="1382" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-34" value="削除確認ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;あるもの：消したいTodoの内容&lt;br&gt;Todo一覧から表示されなくなる&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・Todoの名前&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・Todoの内容&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・タグ情報&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="840" y="1712" width="185" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-35" value="内容変更ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;あるもの：Todoの内容を変更するフォーム&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・Todoの名前&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・Todoの内容&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;・タグ情報&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1067.5" y="1712" width="185" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-37" value="内容変更確認ページ&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;上記の変更を確認するページ&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;ミスがあれば一つ前に戻る&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1067.5" y="1842" width="185" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-41" value="&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;Yes&lt;br&gt;押下するとTodoのfinishedがtrueになり&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;一覧に表示されなくなる&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1372" y="1660" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-42" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="937.5" y="1672" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-44" value="完了済ボタン押下" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="764" y="682" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-45" value="完了済タスク表示ページ&lt;div&gt;あるもの：完了したTodo情報&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="746.5" y="830" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-47" value="スタートに&lt;div&gt;戻る&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="799" y="962" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-50" value="終了&lt;div&gt;メインページに戻る&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="935" y="2140" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-51" value="スタート(メインページ)&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;初期状態：TODOが表示される枠が表示(何も表示されていない)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;あるもの：ヘッダー(TODO作成、タグ作成、完了済ボタンを設置)、フッター&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Todoリストはこのページに表示される&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;align=center;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="795" y="540" width="540" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9SUXiFuQ6x9NMpKyhDSF-52" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 11px; text-wrap: nowrap;&quot;&gt;Yes&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="850" y="762" width="50" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
