@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
-from server.src.sql.dbSettings import SessionLocal, todoLists
+from sql.dbSettings import SessionLocal, todoLists
 
 
-def getAllTodoItems():
+def getAllTodoItems(tablename: str):
     # セッションを作成
-    db: Session = SessionLocal()
+    db: Session = SessionLocal
     try:
         # すべてのTodoアイテムを取得
-        todos = db.query(todoLists).all()
+        todos = db.query(tablename).all()
         return todos
     except Exception as e:
         print(f"Error occurred: {e}")
