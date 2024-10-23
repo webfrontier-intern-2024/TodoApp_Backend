@@ -7,3 +7,5 @@ alembic.ini
 /server/src/migration/__pycache__
 .$ER.drawio.bkp
 .$ER.drawio.dtmp
+/client
+flow.drawio

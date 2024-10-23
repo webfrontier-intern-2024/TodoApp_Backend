@@ -3,16 +3,15 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, UUID, Foreign
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from dotenv import load_dotenv
+from sqlalchemy.orm import sessionmaker
 import os
 
 load_dotenv()
 
 path = os.getenv("DB_PASS")
-
 Engine = create_engine(path)
-
-
 Base = declarative_base()
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
 
 
 # ここでテーブルを作成する
