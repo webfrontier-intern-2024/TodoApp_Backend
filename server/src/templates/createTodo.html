@@ -3,14 +3,14 @@ content %}
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4">Todo作成</h2>
 
-  <form method="POST" action="/todo" enctype="application/json">
+  <form id="createTodo">
     <ul>
       <li class="mb-2">
         <label for="title" class="block">タイトル</label>
         <input
           type="text"
           id="title"
-          name="title"
+          name="taskName"
           class="border border-gray-300 p-2 w-full" />
       </li>
       <li>
@@ -19,6 +19,16 @@ content %}
           id="description"
           name="description"
           class="border border-gray-300 p-2 w-full"></textarea>
+      </li>
+      <li>
+        <label for="description" class="block">タグ</label>
+        <select
+          id="tags"
+          name="tags"
+          class="border border-gray-300 p-2 w-full">
+          {% for tag in tags %}
+            <option value={tag.id}>{{tag.tagName}}</option>
+          {% endfor %}
       </li>
       <li>
         <button
@@ -30,4 +40,5 @@ content %}
     </ul>
   </form>
 </div>
+<script src="/static/javascript/createTodo.js"></script>
 {% endblock %}
