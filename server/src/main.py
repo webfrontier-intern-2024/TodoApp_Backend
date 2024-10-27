@@ -6,10 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from datetime import datetime
 from uuid import uuid4
-from sqlalchemy.orm import sessionmaker
-from sql.get import getAllTodoItems
-from sql.dbSettings import Base, Engine
-from sql.dbSettings import todoLists, tags, settings
+from sql.crud import createItem, getTableAllItems, getItemDetails
 
 # Classを作成するためにBaseModelをインポート
 from pydantic import BaseModel
@@ -19,10 +16,10 @@ app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 # テンプレートファイルのディレクトリを指定
 templates = Jinja2Templates(directory="templates")
-engine = Engine
-Base.metadata.create_all(engine)
-DBsession = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
-session = DBsession()
+# engine = Engine
+# Base.metadata.create_all(engine)
+# DBsession = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
+# session = DBsession()
 
 fake_todo_list = [
     {
@@ -44,7 +41,7 @@ fake_todo_list = [
 
 # レスポンスの形式を設定する必要がある
 # get(htmlレンダリング)処理
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 def root(
     skip: int = 0,
     limit: int = 10,
@@ -54,6 +51,8 @@ def root(
     return RedirectResponse(f"/todo?skip={skip}&limit={limit}&completed={completed}")
 
 
+# getエンドポイント
+##########################################################################
 @app.get(
     "/todo",
     response_class=HTMLResponse,
@@ -61,46 +60,86 @@ def root(
 def mainPage(
     request: Request,
 ):
+    todoLists = getTableAllItems("todoLists")
     todos = {
         "request": request,
-        "todos": fake_todo_list,
+        "todos": todoLists,
     }
     return templates.TemplateResponse("index.html", todos)
 
 
-@app.get("/todo/{todoID}", response_class=HTMLResponse)
-def detail(request: Request, todoID: str):
-    # ID検索をして一番最初のものを取得
-    # idCol = session.query(todoLists).filter(todoLists.todoID == todoID).first()
-    idCol = fake_todo_list[0]
-    todo = {"request": request, "todo": idCol}
-    return templates.TemplateResponse("detail.html", todo)
+@app.get("/tag", response_class=HTMLResponse)
+def tagPage(request: Request):
+    tags = getTableAllItems("tags")
+    if tags is None:
+        alert = "タグが登録されていません"
+        return templates.TemplateResponse(
+            "error.html", {"request": request, "error": alert}
+        )
+    return templates.TemplateResponse("tag.html", {"request": request, "tags": tags})
 
 
-# Todo作成用のページ遷移用エンドポイント
+# Todo・タグ作成用のページ遷移用エンドポイント
+##########################################################################
 @app.get("/createTodo", response_class=HTMLResponse)
 def createTodoPage(request: Request):
+    tags = getTableAllItems("tags")
+    if tags is None:
+        alert = "タグが登録されていません"
+        return templates.TemplateResponse(
+            "error.html", {"request": request, "error": alert}
+        )
     return templates.TemplateResponse("createTodo.html", {"request": request})
 
 
 @app.get("/createTag", response_class=HTMLResponse)
 def createTagPage(request: Request):
+
     return templates.TemplateResponse("createTag.html", {"request": request})
 
 
+# 単体取得
+##########################################################################
+@app.get("/todo/{todoID}", response_class=JSONResponse)
+def detail(request: Request, todoID: str):
+    # ID検索をして一番最初のものを取得
+    idCol = getItemDetails("relations", todoID)
+    todo = {"request": request, "todo": idCol}
+    return JSONResponse(todo)
+
+
+@app.get("/tag/{tagID}", response_class=HTMLResponse)
+def detail(request: Request, tagID: str):
+    # ID検索をして一番最初のものを取得
+    idCol = getItemDetails("tags", tagID)
+    todo = {"request": request, "todo": idCol}
+    return templates.TemplateResponse("detail.html", todo)
+
+
+##########################################################################
 # POST処理
 @app.post("/todo", response_class=JSONResponse)
-async def creatoeTodoItem(request: Request):
-    data = await request.json()
-    new_todo = {
-        "todoID": uuid4(),
-        "taskName": data["taskName"],
-        "description": data["description"],
-        "createdAt": datetime.now(),
-        "updatedAt": datetime.now(),
-    }
+async def createTodo(request: Request):
+    try:
+        data = await request.json()
+    except ValueError:
+        return JSONResponse({"error": "Invalid JSON"}, status_code=400)
 
-    return JSONResponse(content=new_todo)
+    createItem("todoLists", data)
+    return JSONResponse(data)
+
+
+@app.post("/tag", response_class=JSONResponse)
+async def createTag(request: Request):
+    try:
+        data = await request.json()
+        tagData = createItem("tags", data)
+
+    except ValueError:
+        return JSONResponse({"error": "Invalid JSON"}, status_code=400)
+
+    createItem("tags", tagData)
+    return JSONResponse(tagData)
 
 
 # BASEファイル
