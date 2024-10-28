@@ -1,30 +1,30 @@
-document
-  .getElementById("createTags")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+document.addEventListener("DOMContentLoaded", function () {
+  const createTagForm = document.getElementById("createTag");
+  if (createTagForm) {
+    createTagForm.addEventListener("submit", async function (event) {
+      event.preventDefault(); // フォームのデフォルトの送信を防ぐ
 
-    // フォームデータを取得
-    const tags = document.getElementById("tags").value;
+      const data = {
+        tagName: document.getElementById("tagName").value,
+        // フォームから値を取得
+      };
 
-    // JSON形式に変換
-    const data = {
-      tagName: tags,
-    };
-
-    // Fetch APIを使ってデータを送信
-    fetch("/tag", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data), // JSON形式に変換
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        window.location.href = "/"; // リダイレクト
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      const result = await fetch("/tag", {
+        method: "POST", // POSTメソッドを指定
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // JSON形式に変換
       });
-  });
+
+      // レスポンスの処理
+      if (result.ok) {
+        const responseData = await result.json();
+        window.location.href = "/"; // リダイレクト
+        console.log(responseData.message); // 成功メッセージを表示
+      } else {
+        console.error("Error:", result.statusText); // エラーメッセージを表示
+      }
+    });
+  }
+});

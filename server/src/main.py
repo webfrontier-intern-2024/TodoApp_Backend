@@ -70,13 +70,9 @@ def mainPage(
 
 @app.get("/tag", response_class=HTMLResponse)
 def tagPage(request: Request):
-    tags = getTableAllItems("tags")
-    if tags is None:
-        alert = "タグが登録されていません"
-        return templates.TemplateResponse(
-            "error.html", {"request": request, "error": alert}
-        )
-    return templates.TemplateResponse("tag.html", {"request": request, "tags": tags})
+    tag = getTableAllItems("tags")
+    tags = {"request": request, "tags": tag}
+    return templates.TemplateResponse("tag.html", tags)
 
 
 # Todo・タグ作成用のページ遷移用エンドポイント
@@ -92,7 +88,7 @@ def createTodoPage(request: Request):
     return templates.TemplateResponse("createTodo.html", {"request": request})
 
 
-@app.get("/createTag", response_class=HTMLResponse)
+@app.get("/createTagName", response_class=HTMLResponse)
 def createTagPage(request: Request):
 
     return templates.TemplateResponse("createTag.html", {"request": request})
@@ -133,13 +129,16 @@ async def createTodo(request: Request):
 async def createTag(request: Request):
     try:
         data = await request.json()
+        print(data)
         tagData = createItem("tags", data)
+        # tagDataがCursorResult型の場合、適切な形式に変換する必要があります
+        tagDataDict = tagData.all() if hasattr(tagData, "all") else tagData
+        return JSONResponse(
+            content={"message": "Tag created successfully", "tag": tagDataDict}
+        )
 
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
-
-    createItem("tags", tagData)
-    return JSONResponse(tagData)
 
 
 # BASEファイル

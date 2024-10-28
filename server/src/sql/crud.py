@@ -58,13 +58,22 @@ def createItem(tableName: str, data: dict):
         # メタデータを取得
         metadata = MetaData()
         # テーブルオブジェクトを取得
-        table = Table(tableName, metadata, autoload_with=db.bind)
+        table = Table(
+            tableName,
+            metadata,
+            autoload_with=db.bind,
+        )
 
-        # すべてのTodoアイテムを取得
-        new_item = insert(table).values(**data)
+        # created_at と updated_at を data に追加
 
-        # db.refresh(new_item)
-        return JSONResponse(content=new_item)
+        data["created_at"] = datetime.now()
+        data["updated_at"] = datetime.now()
+
+        stmt = insert(table).values(**data)  # ステートメントを作成
+        new_item = db.execute(stmt)  # ステートメントを実行
+        db.commit()  # 変更をコミット
+        return new_item
+
     except Exception as e:
         print(f"Error occurred: {e}")
     finally:
