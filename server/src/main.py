@@ -85,7 +85,9 @@ def createTodoPage(request: Request):
         return templates.TemplateResponse(
             "error.html", {"request": request, "error": alert}
         )
-    return templates.TemplateResponse("createTodo.html", {"request": request})
+    return templates.TemplateResponse(
+        "createTodo.html", {"request": request, "tags": tags}
+    )
 
 
 @app.get("/createTagName", response_class=HTMLResponse)
@@ -118,18 +120,25 @@ def detail(request: Request, tagID: str):
 async def createTodo(request: Request):
     try:
         data = await request.json()
+
+        createTodo = createItem("todoLists", data)
+
+        createTodoDict = createTodo.all() if hasattr(createTodo, "all") else createTodo
+
+        return JSONResponse(
+            content={
+                "message": "Todo created successfully",
+                "todoLists": createTodoDict,
+            }
+        )
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
-
-    createItem("todoLists", data)
-    return JSONResponse(data)
 
 
 @app.post("/tag", response_class=JSONResponse)
 async def createTag(request: Request):
     try:
         data = await request.json()
-        print(data)
         tagData = createItem("tags", data)
         # tagDataがCursorResult型の場合、適切な形式に変換する必要があります
         tagDataDict = tagData.all() if hasattr(tagData, "all") else tagData
