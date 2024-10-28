@@ -6,10 +6,10 @@ content %}
   <form id="createTodo">
     <ul>
       <li class="mb-2">
-        <label for="title" class="block">タイトル</label>
+        <label for="taskName" class="block">タイトル</label>
         <input
           type="text"
-          id="title"
+          id="taskName"
           name="taskName"
           class="border border-gray-300 p-2 w-full" />
       </li>
@@ -21,14 +21,12 @@ content %}
           class="border border-gray-300 p-2 w-full"></textarea>
       </li>
       <li>
-        <label for="description" class="block">タグ</label>
-        <select
-          id="tags"
-          name="tags"
-          class="border border-gray-300 p-2 w-full">
+        <label for="tag" class="block">タグ</label>
+        <select id="tag" name="tag" class="border border-gray-300 p-2 w-full">
           {% for tag in tags %}
-            <option value={tag.id}>{{tag.tagName}}</option>
+          <option value="{{tag.tagID}}">{{tag.tagName}}</option>
           {% endfor %}
+        </select>
       </li>
       <li>
         <button
