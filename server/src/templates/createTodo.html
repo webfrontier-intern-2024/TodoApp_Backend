@@ -3,7 +3,7 @@ content %}
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4">Todo作成</h2>
 
-  <form id="createTodo">
+  <form id="createTodos" method="post">
     <ul>
       <li class="mb-2">
         <label for="taskName" class="block">タイトル</label>
@@ -38,5 +38,5 @@ content %}
     </ul>
   </form>
 </div>
-<script src="/static/javascript/createTodo.js"></script>
+<script type="module" src="/static/javascript/createTodo.js"></script>
 {% endblock %}

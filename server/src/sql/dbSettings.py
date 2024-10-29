@@ -9,6 +9,7 @@ from sqlalchemy import (
     ForeignKey,
     Text,
 )
+import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from dotenv import load_dotenv
@@ -32,37 +33,32 @@ class todoLists(Base):
     todoID = Column(UUID(as_uuid=True), primary_key=True, index=True)
     taskName = Column(String(255), index=True, nullable=False)
     description = Column(Text, index=True, nullable=True)
-    finished = Column(Boolean, index=True, nullable=False)
-    created_at = Column(DateTime, index=True, nullable=False)
-    updated_at = Column(DateTime, index=True, nullable=False)
+    finished = Column(Boolean, index=True, nullable=False, default=False)
+    created_at = Column(DateTime, index=True, nullable=True, default=sa.func.now())
+    updated_at = Column(DateTime, index=True, nullable=True, onupdate=sa.func.now())
+
+    # tagsテーブルからの外部キー
+    tagID = Column(
+        UUID(as_uuid=True), ForeignKey("tags.tagID"), index=True, nullable=True
+    )  # 外部キーを追加
 
     # settingsとのリレーションシップ
-    relations = relationship("relations", back_populates="todoLists")
+    tags = relationship("tags", back_populates="todoLists")  # リレーションシップを追加
 
 
 class tags(Base):
     __tablename__ = "tags"
-    tagID = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    tagName = Column(String(255), index=True, nullable=False)
-    created_at = Column(DateTime, index=True, nullable=False)
-    updated_at = Column(DateTime, index=True, nullable=False)
-
-    # settingsとのリレーションシップ
-    relations = relationship("relations", back_populates="tags")
-
-
-class relations(Base):
-    __tablename__ = "relations"
-    settingID = Column(UUID(as_uuid=True), primary_key=True, index=True)
-    todoID = Column(
-        UUID(as_uuid=True), ForeignKey("todoLists.todoID"), index=True, nullable=False
-    )  # 外部キーを設定
     tagID = Column(
-        Integer, ForeignKey("tags.tagID"), index=True, nullable=False
-    )  # 外部キーを設定
-    created_at = Column(DateTime, index=True, nullable=False)
-    updated_at = Column(DateTime, index=True, nullable=False)
+        UUID(as_uuid=True),
+        primary_key=True,
+        index=True,
+        server_default=sa.text("gen_random_uuid()"),
+    )
+    tagName = Column(String(255), index=True, nullable=False)
+    created_at = Column(DateTime, index=True, nullable=True, default=sa.func.now())
+    updated_at = Column(DateTime, index=True, nullable=True, onupdate=sa.func.now())
 
-    # リレーションシップの設定
-    todo = relationship("todoLists", back_populates="relations")
-    tag = relationship("tags", back_populates="relations")
+    # todoListsとのリレーションシップ
+    todoLists = relationship(
+        "todoLists", back_populates="tags"
+    )  # リレーションシップを追加

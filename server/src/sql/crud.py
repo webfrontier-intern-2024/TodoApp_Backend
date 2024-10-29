@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 from sql.dbSettings import SessionLocal
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def getTableAllItems(tableName: str):
@@ -27,7 +27,7 @@ def getTableAllItems(tableName: str):
         db.close()  # セッションを閉じる
 
 
-def getItemDetails(tableName: str, itemID: str):
+def getItemDetails(tableName: str, keyID: str, searchID: str):
     # セッションを作成
     db: Session = SessionLocal()
     try:
@@ -36,7 +36,7 @@ def getItemDetails(tableName: str, itemID: str):
         # テーブルオブジェクトを取得
         table = Table(tableName, metadata, autoload_with=db.bind)
         # すべてのTodoアイテムを取得
-        query = db.query(table).filter(table.todoID == itemID).first()
+        query = db.query(table).filter(table.keyID == searchID).first()
         result = db.execute(query)
         item = result.fetchall()
 
@@ -64,17 +64,19 @@ def createItem(tableName: str, data: dict):
             autoload_with=db.bind,
         )
 
-        # created_at と updated_at を data に追加
-
         data["created_at"] = datetime.now()
         data["updated_at"] = datetime.now()
 
-        stmt = insert(table).values(**data)  # ステートメントを作成
-        new_item = db.execute(stmt)  # ステートメントを実行
-        db.commit()  # 変更をコミット
-        return new_item
+        stmt = insert(table).values(**data)
+        new_item = db.execute(stmt)
+        db.commit()
+
+        return new_item.inserted_primary_key_rows
 
     except Exception as e:
         print(f"Error occurred: {e}")
+        raise HTTPException(
+            status_code=400, detail="Error occurred while creating item."
+        )
     finally:
         db.close()  # セッションを閉じる

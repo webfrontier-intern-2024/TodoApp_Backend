@@ -1,33 +1,29 @@
-{% extends "base.html" %} {% block title %}Todo作成ページ{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Todo一覧ページ{% endblock %} {% block
 content %}
-<div class="container mx-auto p-4">
-  <h2 class="text-2xl font-bold mb-4">Todo作成</h2>
-
-  <form method="POST" action="/todo" enctype="application/json">
-    <ul>
-      <li class="mb-2">
-        <label for="title" class="block">タイトル</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="border border-gray-300 p-2 w-full" />
-      </li>
-      <li>
-        <label for="description" class="block">詳細</label>
-        <textarea
-          id="description"
-          name="description"
-          class="border border-gray-300 p-2 w-full"></textarea>
-      </li>
-      <li>
-        <button
-          type="submit"
-          class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-          作成
-        </button>
-      </li>
-    </ul>
-  </form>
+<div class="container mx-auto p-4 max-h-min">
+  <h2 class="text-2xl font-bold mb-4">Todo一覧</h2>
+  {% if todos %}
+  <ul class="list-disc pl-5">
+    {% for todo in todos %}
+    <div class="bg-red-300 p-4 mt-4 rounded-2xl">
+      <div>
+        <li class="mb-2 list-none">
+          <a class="text-blue-600" href="/todo/{{ todo.todoID }}"
+            >{{ todo.todoName }}</a
+          >
+        </li>
+        <li class="list-none">
+          <p>作成日：{{ todo.created_at}}</p>
+        </li>
+        <li class="list-none">
+          <p>更新日：{{ todo.updated_at}}</p>
+        </li>
+      </div>
+    </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-gray-600">タグはありません</p>
+  {% endif %}
 </div>
 {% endblock %}
