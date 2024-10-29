@@ -94,37 +94,12 @@ def tagPage(request: Request):
     return templates.TemplateResponse("tag.html", tags)
 
 
-#
-
-
-# 単体取得
-##########################################################################
-@app.get("/todo/{todoID}", response_class=JSONResponse)
-def detail(request: Request, todoID: str):
-    # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("relations", todoID, todoID)
-    todos = {"request": request, "todos": idCol}
-
-    return templates.TemplateResponse("detail.html", todos)
-
-
-@app.get("/tag/{tagID}", response_class=JSONResponse)
-async def detail(request: Request, tagID: str):
-    # ID検索をして一番最初のものを取得
-    keyID = tagID
-    idCol = getItemDetails("tags", keyID, tagID)
-    tag = {"tags": idCol}
-    jsonTags = JSONResponse(tag)
-    return templates.TemplateResponse("tagDetail.html", jsonTags)
-
-
 ##########################################################################
 # POST処理
 @app.post("/todo", response_class=JSONResponse)
 async def createTodo(request: Request):
     try:
         data = await request.json()
-        print(data)
 
         # 必要なフィールドが含まれているか確認
         if "taskName" not in data or "description" not in data or "tagID" not in data:
@@ -134,18 +109,12 @@ async def createTodo(request: Request):
 
         # createItemを呼び出す
         createTodo = createItem("todoLists", data)  # dataを渡す
-        todoDataDict = createTodo.all() if hasattr(createTodo, "all") else createTodo
-        return JSONResponse(
-            content={
-                "message": "Todo created successfully",
-                "todos": todoDataDict,  # 挿入されたアイテムを返す
-            }
-        )
+
+        return JSONResponse(content=data)
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
 
 
-# できた
 @app.post("/tag", response_class=JSONResponse)
 async def createTag(request: Request):
     try:
@@ -161,6 +130,26 @@ async def createTag(request: Request):
 
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
+
+
+# 単体取得
+##########################################################################
+@app.get("/todo/{todo_id}", response_class=JSONResponse)
+def detail(request: Request, todo_id: str):
+    # ID検索をして一番最初のものを取得
+    idCol = getItemDetails("relations", todo_id, todo_id)
+    todos = {"request": request, "todos": idCol}
+
+    return templates.TemplateResponse("detail.html", todos)
+
+
+@app.get("/tag/{tag_id}", response_class=JSONResponse)
+async def detail(request: Request, tagID: str):
+    # ID検索をして一番最初のものを取得
+    idCol = getItemDetails("tags", tagID, tagID)
+    tag = {"tags": idCol}
+    jsonTags = JSONResponse(tag)
+    return templates.TemplateResponse("tagDetail.html", jsonTags)
 
 
 # BASEファイル

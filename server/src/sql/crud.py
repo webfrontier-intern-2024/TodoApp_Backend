@@ -64,8 +64,10 @@ def createItem(tableName: str, data: dict):
             autoload_with=db.bind,
         )
 
-        data["created_at"] = datetime.now()
-        data["updated_at"] = datetime.now()
+        # データを挿入
+        # ISOフォーマットじゃないとエラーが出る
+        data["created_at"] = datetime.isoformat(datetime.now())
+        data["updated_at"] = datetime.isoformat(datetime.now())
 
         stmt = insert(table).values(**data)
         new_item = db.execute(stmt)
