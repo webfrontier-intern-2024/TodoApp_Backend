@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (createTagForm) {
     createTagForm.addEventListener("submit", async function (event) {
       event.preventDefault(); // フォームのデフォルトの送信を防ぐ
-
+      const name = document.getElementById("tagName").value;
       const data = {
-        tagName: document.getElementById("tagName").value,
-        // フォームから値を取得
+        tagName: name,
       };
 
       const result = await fetch("/tag", {

@@ -3,7 +3,7 @@ content %}
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4">タグ作成</h2>
 
-  <form id="createTag">
+  <form id="createTag" method="POST">
     <ul>
       <li class="mb-2">
         <label for="tagName" class="block">タグ名</label>
@@ -22,6 +22,6 @@ content %}
       </li>
     </ul>
   </form>
+  <script type="module" src="/static/javascript/createTag.js"></script>
+  {% endblock %}
 </div>
-<script src="/static/javascript/createTag.js"></script>
-{% endblock %}
