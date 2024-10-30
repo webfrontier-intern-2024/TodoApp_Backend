@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}タグ編集ページ{% endblock %} {% block
+content %}
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">タグ編集</h2>
+
+  <form id="editTag">
+    <ul>
+      <li class="mb-2">
+        <label for="tagName" class="block">新規タグ名</label>
+        <input
+          type="text"
+          id="tagName"
+          name="tagName"
+          class="border border-gray-300 p-2 w-full" />
+      </li>
+      <li>
+        <button
+          type="submit"
+          class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
+          作成
+        </button>
+      </li>
+    </ul>
+  </form>
+  <script type="module" src="/static/javascript/editTag.js"></script>
+</div>
+{% endblock %}

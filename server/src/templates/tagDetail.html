@@ -12,13 +12,16 @@ content %}
     <p class="text-gray-600">変更日：{{ tag.updated_at }}</p>
   </div>
   <div class="p-4 mt-4 flex space-x-4" style="margin: auto 0">
-    <p class="mb-3">
-      <a class="hover:underline" href="/changeTag">変更</a>
-    </p>
-    <p class="mb-3">
-      <a class="hover:underline" href="/deleteTag">削除</a>
-    </p>
+    <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
+      <a href="/editTag?tagid={{tag.tagID}}">変更</a>
+    </div>
+
+    <form
+      id="deleteTag"
+      class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
+      <button type="submit">削除</button>
+    </form>
   </div>
 </div>
-
+<script type="module" src="/static/javascript/deleteTag.js"></script>
 {% endblock %}

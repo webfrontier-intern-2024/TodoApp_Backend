@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from datetime import datetime
 from uuid import uuid4
-from sql.crud import createItem, getTableAllItems, getItemDetails
+from sql.crud import createItem, getTableAllItems, getItemDetails, editData, deleteData
 
 # Classを作成するためにBaseModelをインポート
 from pydantic import BaseModel
@@ -21,23 +21,6 @@ templates = Jinja2Templates(directory="templates")
 # DBsession = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
 # session = DBsession()
 
-fake_todo_list = [
-    {
-        "todoID": uuid4(),
-        "taskName": "買い物に行く",
-        "description": "牛乳と卵を買う",
-        "createdAt": datetime.now(),
-        "updatedAt": datetime.now(),
-    },
-    {
-        "todoID": uuid4(),
-        "taskName": "運動する",
-        "description": "30分ジョギングする",
-        "createdAt": datetime.now(),
-        "updatedAt": datetime.now(),
-    },
-]
-
 
 # レスポンスの形式を設定する必要がある
 # get(htmlレンダリング)処理
@@ -51,7 +34,7 @@ def root(
     return RedirectResponse(f"/todo?skip={skip}&limit={limit}&completed={completed}")
 
 
-# Todo・タグ作成用のページ遷移用エンドポイント
+# Todo・タグ作成などののページ遷移用エンドポイント
 ##########################################################################
 @app.get("/createTodo", response_class=HTMLResponse)
 def createTodoPage(request: Request):
@@ -71,13 +54,28 @@ def createTagPage(request: Request):
     return templates.TemplateResponse("createTag.html", {"request": request})
 
 
+@app.get("/editTag", response_class=JSONResponse)
+def editTagPage(request: Request):
+
+    return templates.TemplateResponse("editTag.html", {"request": request})
+
+
+@app.get("/editTodo", response_class=JSONResponse)
+def editTodoPage(request: Request):
+    tag = getTableAllItems("tags")
+
+    return templates.TemplateResponse(
+        "editTodo.html", {"request": request, "tags": tag}
+    )
+
+
 # getエンドポイント
 ##########################################################################
 @app.get(
     "/todo",
     response_class=JSONResponse,
 )
-def mainPage(request: Request):
+async def mainPage(request: Request):
     todoLists = getTableAllItems("todoLists")
     todos = {
         "request": request,
@@ -88,10 +86,27 @@ def mainPage(request: Request):
 
 
 @app.get("/tag", response_class=JSONResponse)
-def tagPage(request: Request):
+async def tagPage(request: Request):
     tag = getTableAllItems("tags")
     tags = {"request": request, "tags": tag}
     return templates.TemplateResponse("tag.html", tags)
+
+
+# 単体取得
+##########################################################################
+@app.get("/todo/{todo_id}", response_class=JSONResponse)
+async def detail(request: Request, todo_id: str):
+    idCol = getItemDetails("todoLists", "todoID", todo_id)
+    todo = {"request": request, "todo": idCol}
+
+    return templates.TemplateResponse("todoDetail.html", todo)
+
+
+@app.get("/tag/{tag_id}", response_class=JSONResponse)
+async def detail(request: Request, tag_id: str):
+    idCol = getItemDetails("tags", "tagID", tag_id)
+    tag = {"request": request, "tag": idCol}
+    return templates.TemplateResponse("tagDetail.html", tag)
 
 
 ##########################################################################
@@ -108,10 +123,10 @@ async def createTodo(request: Request):
             )
 
         # createItemを呼び出す
-        todoList = createItem("todoLists", data)  # dataを渡す
+        createItem("todoLists", data)  # dataを渡す
 
         return JSONResponse(
-            content={"message": "Tag created successfully", "tag": todoList},
+            content={"message": "Tag created successfully", "tag": data},
         )
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
@@ -134,24 +149,56 @@ async def createTag(request: Request):
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
 
 
-# 単体取得
-##########################################################################
-@app.get("/todo/{todo_id}", response_class=JSONResponse)
-def detail(request: Request, todo_id: str):
-    # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("todoLists", "todoID", todo_id)
-    todo = {"request": request, "todo": idCol}
-
-    return templates.TemplateResponse("todoDetail.html", todo)
-
-
-@app.get("/tag/{tag_id}", response_class=JSONResponse)
-def detail(request: Request, tag_id: str):
-    # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("tags", "tagID", tag_id)
-    tag = {"request": request, "tag": idCol}
-    return templates.TemplateResponse("tagDetail.html", tag)
-
-
 # PUT
 ##########################################################################
+@app.put("/todo/{todo_id}", response_class=JSONResponse)
+async def updateTodo(request: Request, todo_id: str):
+    req = await request.json()
+    editTodo = editData("todoLists", req, todo_id, "todoID")
+    return JSONResponse(
+        content={
+            "message": f"Update todo item with ID {todo_id}",
+            "todo": editTodo,
+        }
+    )
+
+
+@app.put("/tag/{tag_id}", response_class=JSONResponse)
+async def updateTag(request: Request, tag_id: str):
+    req = await request.json()
+
+    editTag = editData("tags", req, tag_id, "tagID")
+
+    return JSONResponse(
+        content={
+            "message": f"Update tag item with ID {tag_id}",
+            "tag": editTag,
+        }
+    )
+
+
+# DELETE
+##########################################################################
+@app.delete("/todo/{todo_id}", response_class=JSONResponse)
+async def deleteTodo(request: Request, todo_id: str):
+    delTodo = await request.json()
+    deleteData("todoLists", todo_id, "todoID")
+
+    return JSONResponse(
+        content={
+            "message": f"Delete todo item with ID {todo_id}",
+            "todo": delTodo,
+        }
+    )
+
+
+@app.delete("/tag/{tag_id}", response_class=JSONResponse)
+async def deleteTag(request: Request, tag_id: str):
+
+    delReq = await request.json()
+    deleteData("todoLists", tag_id, "tagID")
+    deleteData("tags", tag_id, "tagID")
+
+    return JSONResponse(
+        content={"message": f"Deleted tag with ID {tag_id}.", "tag": delReq}
+    )

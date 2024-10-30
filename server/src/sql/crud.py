@@ -35,16 +35,17 @@ def getItemDetails(tableName: str, keyID: str, searchID: str):
         metadata = MetaData()
         # テーブルオブジェクトを取得
         table = Table(tableName, metadata, autoload_with=db.bind)
-        # すべてのTodoアイテムを取得
-        query = db.query(table).filter(table.c[keyID] == searchID).first()
 
-        # テーブルデータ取得
-        return {column.name: query[i] for i, column in enumerate(table.columns)}
+        # select文を使用してアイテムを取得
+        stmt = select(table).where(table.c[keyID] == searchID)
+        result = db.execute(stmt).first()  # 最初の結果を取得
+
+        return result  # Rowオブジェクトを返す
     except Exception as e:
         print(f"Error occurred: {e}")
         return None  # エラーが発生した場合はNoneを返す
     finally:
-        db.close()  # セッションを閉じる
+        db.close()
 
 
 def createItem(tableName: str, data: dict):
@@ -66,8 +67,8 @@ def createItem(tableName: str, data: dict):
 
         # データを挿入
         # ISOフォーマットじゃないとエラーが出る
-        data["created_at"] = datetime.isoformat(datetime.now())
-        data["updated_at"] = datetime.isoformat(datetime.now())
+        data["created_at"] = datetime.now().isoformat(timespec="seconds")
+        data["updated_at"] = datetime.now().isoformat(timespec="seconds")
 
         stmt = insert(table).values(**data)
         new_item = db.execute(stmt)
@@ -79,6 +80,72 @@ def createItem(tableName: str, data: dict):
         print(f"Error occurred: {e}")
         raise HTTPException(
             status_code=400, detail="Error occurred while creating item."
+        )
+    finally:
+        db.close()  # セッションを閉じる
+
+
+def editData(tableName: str, data: dict, searchID: str, keyID: str):
+    # セッションを作成
+    if data is None:
+        raise ValueError("Data must be a valid dictionary.")
+
+    db: Session = SessionLocal()
+    try:
+
+        # メタデータを取得
+        metadata = MetaData()
+        # テーブルオブジェクトを取得
+        table = Table(
+            tableName,
+            metadata,
+            autoload_with=db.bind,
+        )
+
+        # データを挿入
+        # ISOフォーマットじゃないとエラーが出る
+        data["updated_at"] = datetime.now().isoformat(timespec="seconds")
+
+        stmt = table.update().where(table.c[keyID] == searchID).values(**data)
+        db.execute(stmt)
+        db.commit()
+
+        return {"message": "Item updated successfully"}
+
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        raise HTTPException(
+            status_code=400, detail="Error occurred while updating item."
+        )
+    finally:
+        db.close()  # セッションを閉じる
+
+
+def deleteData(tableName: str, searchID: str, keyID: str):
+    # セッションを作成
+    db: Session = SessionLocal()
+    try:
+
+        # メタデータを取得
+        metadata = MetaData()
+        # テーブルオブジェクトを取得
+        table = Table(
+            tableName,
+            metadata,
+            autoload_with=db.bind,
+        )
+
+        # データを削除
+        stmt = table.delete().where(table.c[keyID] == searchID)
+        db.execute(stmt)
+        db.commit()
+
+        return {"message": "Item deleted successfully"}
+
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        raise HTTPException(
+            status_code=400, detail="Error occurred while deleting item."
         )
     finally:
         db.close()  # セッションを閉じる
