@@ -5,29 +5,23 @@ content %}
   {% if todos %}
   <ul class="list-disc pl-5 flex flex-wrap">
     {% for todo in todos %}
-    <div class="bg-red-300 p-4 mt-4 mr-4 rounded-2xl">
+    <div class="bg-red-300 p-4 mt-4 mr-4 rounded-2xl max-h-fit">
       <li class="mb-2 list-none">
         <div>
           <a class="text-blue-600" href="/todo/{{ todo.todoID }}"
             >{{ todo.taskName }}</a
           >
-          <h3 class="text-gray-600">{{ todo.description }}</h3>
+          <h3 class="text-gray-600">内容：{{ todo.description }}</h3>
           <p class="text-gray-600">期限：{{ todo.limit_at }}</p>
           <p class="text-gray-600">作成：{{ todo.created_at }}</p>
           <p class="text-gray-600">更新：{{ todo.updated_at }}</p>
         </div>
 
-        <div>
+        <!-- <div id="deleteTodo">
           <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            <a href="/createTodo">変更</a>
+            <a href="/finished">完了</a>
           </button>
-          <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            削除
-          </button>
-          <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            完了
-          </button>
-        </div>
+        </div> -->
       </li>
     </div>
     {% endfor %}
@@ -36,4 +30,6 @@ content %}
   <p class="text-gray-600">Todoリストはありません</p>
   {% endif %}
 </div>
+<script type="module" src="static/javascript/deleteTodo.js"></script>
+
 {% endblock %}

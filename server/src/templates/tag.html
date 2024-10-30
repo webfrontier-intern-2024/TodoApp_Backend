@@ -5,33 +5,22 @@ content %}
   {% if tags %}
   <ul class="list-disc pl-5 flex flex-wrap">
     {% for tag in tags %}
-    <div class="bg-red-300 p-4 mt-4 mr-4 rounded-2xl">
+    <div class="bg-red-300 p-4 mt-4 mr-4 rounded-2xl w-96">
       <li class="mb-2 list-none">
         <div>
           <h3>
             <a class="text-blue-600" href="/tag/{{ tag.tagID }}"
               >{{ tag.tagName }}</a
-            ><s></s>
+            >
           </h3>
           <p class="text-gray-600">作成：{{ tag.created_at }}</p>
           <p class="text-gray-600">更新：{{ tag.updated_at }}</p>
-        </div>
-
-        <div>
-          <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            <a href="/changeTag">変更</a>
-          </button>
-          <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            <a href="/deleteTag">削除</a>
-          </button>
-          <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            <a href=""></a>完了
-          </button>
         </div>
       </li>
     </div>
     {% endfor %}
   </ul>
+</div>
   {% else %}
   <p class="text-gray-600">Todoリストはありません</p>
   {% endif %}

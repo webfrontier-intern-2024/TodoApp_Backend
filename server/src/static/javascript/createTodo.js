@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // フォームデータを取得
     const taskName = document.getElementById("taskName")?.value;
     const description = document.getElementById("description")?.value;
+    const limit_at = document.getElementById("limit_at")?.value;
     const tag = document.getElementById("tag")?.value;
 
     if (tag == null || tag == "") {
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       todoID: uuidv4(),
       taskName: taskName,
       description: description,
+      limit_at: limit_at,
       finished: false,
       tagID: tag,
     };
@@ -35,9 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (result.ok) {
       const responseData = await result.json();
-      // console.log("Response:", responseData);
-      window.location.href = "/"; // リダイレクト
       console.log(responseData.message);
+      window.location.href = "/";
     } else {
       const errorData = await result.json(); // エラーレスポンスをJSON形式で取得
       console.error("Error:", errorData);

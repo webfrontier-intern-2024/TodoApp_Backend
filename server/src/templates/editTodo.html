@@ -3,7 +3,7 @@ content %}
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4">Todo内容変更</h2>
 
-  <form id="changeTodos">
+  <form id="editTodo">
     <ul>
       <li class="mb-2">
         <label for="taskName" class="block">タイトル</label>
@@ -13,14 +13,14 @@ content %}
           name="taskName"
           class="border border-gray-300 p-2 w-full" />
       </li>
-      <li>
+      <li class="mb-2">
         <label for="description" class="block">詳細</label>
         <textarea
           id="description"
           name="description"
           class="border border-gray-300 p-2 w-full"></textarea>
       </li>
-      <li>
+      <li class="mb-4">
         <label for="tag" class="block">タグ</label>
         <select id="tag" name="tag" class="border border-gray-300 p-2 w-full">
           {% for tag in tags %}
@@ -29,14 +29,22 @@ content %}
         </select>
       </li>
       <li>
+        <label for="limit_at" class="block">期限日</label>
+        <input
+          type="datetime-local"
+          id="limit_at"
+          name="limit_at"
+          class="border border-gray-300 p-2 w-full" />
+      </li>
+      <li>
         <button
           type="submit"
           class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-          作成
+          変更
         </button>
       </li>
     </ul>
   </form>
 </div>
-<script type="module" src="/static/javascript/createTodo.js"></script>
+<script type="module" src="/static/javascript/editTodo.js"></script>
 {% endblock %}

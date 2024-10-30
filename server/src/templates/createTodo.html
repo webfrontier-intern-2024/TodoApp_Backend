@@ -21,6 +21,14 @@ content %}
           class="border border-gray-300 p-2 w-full"></textarea>
       </li>
       <li>
+        <label for="limit_at" class="block">期限</label>
+        <input
+          type="datetime-local"
+          id="limit_at"
+          name="limit_at"
+          class="border border-gray-300 p-2 w-full" />
+      </li>
+      <li>
         <label for="tag" class="block">タグ</label>
         <select id="tag" name="tag" class="border border-gray-300 p-2 w-full">
           {% for tag in tags %}
