@@ -9,7 +9,7 @@ content %}
       <li class="mb-2 list-none">
         <div>
           <h3>
-            <a class="text-blue-600" href="/todo/{{ tag.tagID }}"
+            <a class="text-blue-600" href="/tag/{{ tag.tagID }}"
               >{{ tag.tagName }}</a
             ><s></s>
           </h3>
@@ -19,13 +19,13 @@ content %}
 
         <div>
           <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            <a href="/createTodo">変更</a>
+            <a href="/changeTag">変更</a>
           </button>
           <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            削除
+            <a href="/deleteTag">削除</a>
           </button>
           <button class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-            完了
+            <a href=""></a>完了
           </button>
         </div>
       </li>

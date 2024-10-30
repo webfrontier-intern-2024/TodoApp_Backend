@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Todo詳細ページ{% endblock %} {% block
+content %}
+<div class="container mx-auto p-4 w-3/5">
+  <h2 class="text-2xl font-bold mb-4">Todo詳細：{{ todo.taskName }}</h2>
+</div>
+
+<div
+  class="container bg-red-300 mx-auto p-4 flex justify-around text-center rounded-2xl w-3/5">
+  <div class="p-4 mt-4 rounded-2xl">
+    <h2 class="text-4xl font-bold mb-4">{{ todo.taskName }}</h2>
+    <p class="text-gray-600">作成日：{{ todo.created_at }}</p>
+    <p class="text-gray-600">変更日：{{ todo.updated_at }}</p>
+  </div>
+  <div class="p-4 mt-4 flex space-x-4" style="margin: auto 0">
+    <p class="mb-3">
+      <a class="hover:underline" href="/changeTodo">変更</a>
+    </p>
+    <p class="mb-3">
+      <a class="hover:underline" href="/deleteTodo">削除</a>
+    </p>
+    <p class="mb-3">
+      <a class="hover:underline" href="/completeTodo">完了</a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}

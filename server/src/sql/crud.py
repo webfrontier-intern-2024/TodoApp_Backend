@@ -36,13 +36,13 @@ def getItemDetails(tableName: str, keyID: str, searchID: str):
         # テーブルオブジェクトを取得
         table = Table(tableName, metadata, autoload_with=db.bind)
         # すべてのTodoアイテムを取得
-        query = db.query(table).filter(table.keyID == searchID).first()
-        result = db.execute(query)
-        item = result.fetchall()
+        query = db.query(table).filter(table.c[keyID] == searchID).first()
 
-        return item
+        # テーブルデータ取得
+        return {column.name: query[i] for i, column in enumerate(table.columns)}
     except Exception as e:
         print(f"Error occurred: {e}")
+        return None  # エラーが発生した場合はNoneを返す
     finally:
         db.close()  # セッションを閉じる
 
