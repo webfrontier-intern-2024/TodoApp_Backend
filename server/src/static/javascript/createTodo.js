@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (result.ok) {
       const responseData = await result.json();
       // console.log("Response:", responseData);
-      // window.location.href = "/"; // リダイレクト
+      window.location.href = "/"; // リダイレクト
       console.log(responseData.message);
     } else {
       const errorData = await result.json(); // エラーレスポンスをJSON形式で取得

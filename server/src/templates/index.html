@@ -12,6 +12,7 @@ content %}
             >{{ todo.taskName }}</a
           >
           <h3 class="text-gray-600">{{ todo.description }}</h3>
+          <p class="text-gray-600">期限：{{ todo.limit_at }}</p>
           <p class="text-gray-600">作成：{{ todo.created_at }}</p>
           <p class="text-gray-600">更新：{{ todo.updated_at }}</p>
         </div>

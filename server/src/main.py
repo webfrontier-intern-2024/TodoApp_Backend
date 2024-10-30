@@ -77,7 +77,7 @@ def createTagPage(request: Request):
     "/todo",
     response_class=JSONResponse,
 )
-async def mainPage(request: Request):
+def mainPage(request: Request):
     todoLists = getTableAllItems("todoLists")
     todos = {
         "request": request,
@@ -108,9 +108,11 @@ async def createTodo(request: Request):
             )
 
         # createItemを呼び出す
-        createTodo = createItem("todoLists", data)  # dataを渡す
+        todoList = createItem("todoLists", data)  # dataを渡す
 
-        return JSONResponse(content=data)
+        return JSONResponse(
+            content={"message": "Tag created successfully", "tag": todoList},
+        )
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
 
@@ -137,24 +139,19 @@ async def createTag(request: Request):
 @app.get("/todo/{todo_id}", response_class=JSONResponse)
 def detail(request: Request, todo_id: str):
     # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("relations", todo_id, todo_id).desc
-    todos = {"request": request, "todos": idCol}
+    idCol = getItemDetails("todoLists", "todoID", todo_id)
+    todo = {"request": request, "todo": idCol}
 
-    return templates.TemplateResponse("detail.html", todos)
+    return templates.TemplateResponse("todoDetail.html", todo)
 
 
 @app.get("/tag/{tag_id}", response_class=JSONResponse)
-async def detail(request: Request, tag_id: str):
+def detail(request: Request, tag_id: str):
     # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("tags", tag_id, tag_id)
-    tag = {"tags": idCol}
-    jsonTags = JSONResponse(tag)
-    return templates.TemplateResponse("tagDetail.html", jsonTags)
+    idCol = getItemDetails("tags", "tagID", tag_id)
+    tag = {"request": request, "tag": idCol}
+    return templates.TemplateResponse("tagDetail.html", tag)
 
 
-# BASEファイル
+# PUT
 ##########################################################################
-@app.get("/base", response_class=HTMLResponse)
-def root(request: Request):
-    context = {"request": request}
-    return templates.TemplateResponse("base.html", {"request": context})
