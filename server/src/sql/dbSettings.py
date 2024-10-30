@@ -34,6 +34,7 @@ class todoLists(Base):
     taskName = Column(String(255), index=True, nullable=False)
     description = Column(Text, index=True, nullable=True)
     finished = Column(Boolean, index=True, nullable=False, default=False)
+    limit_at = Column(DateTime, index=True, nullable=True)
     created_at = Column(DateTime, index=True, nullable=True, default=sa.func.now())
     updated_at = Column(DateTime, index=True, nullable=True, onupdate=sa.func.now())
 

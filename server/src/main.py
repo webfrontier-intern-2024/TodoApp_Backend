@@ -83,7 +83,7 @@ async def mainPage(request: Request):
         "request": request,
         "todos": todoLists,
     }
-    print(todos)
+
     return templates.TemplateResponse("index.html", todos)
 
 
@@ -137,16 +137,16 @@ async def createTag(request: Request):
 @app.get("/todo/{todo_id}", response_class=JSONResponse)
 def detail(request: Request, todo_id: str):
     # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("relations", todo_id, todo_id)
+    idCol = getItemDetails("relations", todo_id, todo_id).desc
     todos = {"request": request, "todos": idCol}
 
     return templates.TemplateResponse("detail.html", todos)
 
 
 @app.get("/tag/{tag_id}", response_class=JSONResponse)
-async def detail(request: Request, tagID: str):
+async def detail(request: Request, tag_id: str):
     # ID検索をして一番最初のものを取得
-    idCol = getItemDetails("tags", tagID, tagID)
+    idCol = getItemDetails("tags", tag_id, tag_id)
     tag = {"tags": idCol}
     jsonTags = JSONResponse(tag)
     return templates.TemplateResponse("tagDetail.html", jsonTags)
