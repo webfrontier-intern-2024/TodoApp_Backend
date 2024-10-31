@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(responseData.message); // 成功メッセージを表示
         window.location.href = "/tag";
       } else {
-        console.error("Error:", result.statusText); // エラーメッセージを表示
+        console.error("Error:", result.statusText);
+        window.location.href = `/error?${result.statusText}`;
+        // エラーメッセージを表示
       }
     });
   }

@@ -5,20 +5,20 @@ content %}
 </div>
 
 <div
-  class="container bg-red-300 mx-auto p-4 flex justify-around text-center rounded-2xl w-3/5">
+  class="container bg-green-300 mx-auto p-4 flex justify-around text-center rounded-2xl w-3/5">
   <div class="p-4 mt-4 rounded-2xl">
     <h2 class="text-4xl font-bold mb-4">{{ tag.tagName }}</h2>
     <p class="text-gray-600">作成日：{{ tag.created_at }}</p>
     <p class="text-gray-600">変更日：{{ tag.updated_at }}</p>
   </div>
   <div class="p-4 mt-4 flex space-x-4" style="margin: auto 0">
-    <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
+    <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700 rounded-xl">
       <a href="/editTag?tagid={{tag.tagID}}">変更</a>
     </div>
 
     <form
       id="deleteTag"
-      class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
+      class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700 rounded-xl">
       <button type="submit">削除</button>
     </form>
   </div>
