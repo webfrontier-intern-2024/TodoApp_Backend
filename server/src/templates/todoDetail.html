@@ -4,30 +4,41 @@ content %}
   <h2 class="text-2xl font-bold mb-4">Todo内容：{{ todo.taskName }}</h2>
 </div>
 
+{% if todo.finished == False %}
 <div
   class="container bg-red-300 mx-auto p-4 flex justify-around text-center rounded-2xl w-3/5">
-  <ul class="p-4 mt-4 rounded-2xl">
-    <li><h2 class="text-4xl font-bold mb-4">{{ todo.taskName }}</h2></li>
-    <li>
-      <h2 class="text-2xl text-blue-600 mb-4">{{todo.description}}</h2>
-    </li>
-    <li><p class="text-gray-600">期限日：{{ todo.limit_at }}</p></li>
-    <li><p class="text-gray-600">作成日：{{ todo.created_at }}</p></li>
-    <li><p class="text-gray-600">変更日：{{ todo.updated_at }}</p></li>
-  </ul>
-  <div class="p-4 mt-4 flex space-x-4" style="margin: auto 0">
-    <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-      <a class="hover:underline" href="/editTodo">変更</a>
-    </div>
-    <form id="deleteTodo">
-      <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-        <button type="submit">削除</button>
+  {% else %}
+  <div
+    class="container bg-blue-300 mx-auto p-4 flex justify-around text-center rounded-2xl w-3/5">
+    {% endif %}
+    <ul class="p-4 mt-4 rounded-2xl">
+      <li><h2 class="text-4xl font-bold mb-4">{{ todo.taskName }}</h2></li>
+      <li>
+        <h2 class="text-2xl text-blue-600 mb-4">{{todo.description}}</h2>
+      </li>
+      <li><p class="text-gray-600">期限日：{{ todo.limit_at }}</p></li>
+      <li><p class="text-gray-600">作成日：{{ todo.created_at }}</p></li>
+      <li><p class="text-gray-600">変更日：{{ todo.updated_at }}</p></li>
+    </ul>
+    <div class="p-4 mt-4 flex space-x-4" style="margin: auto 0">
+      <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700 rounded-xl">
+        <a href="/editTodo?todoid={{todo.todoID}}">変更</a>
       </div>
-    </form>
-    <div class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700">
-      <a class="hover:underline" href="/completeTodo">完了</a>
+      <form id="deleteTodo">
+        <div
+          class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700 rounded-xl">
+          <button type="submit">削除</button>
+        </div>
+      </form>
+      <form id="finished">
+        <div
+          class="bg-blue-600 text-white p-2 mt-4 hover:bg-blue-700 rounded-xl">
+          <button type="submit" value="True">完了</button>
+        </div>
+      </form>
     </div>
-    <script type="module" src="/static/javascript/deleteTodo.js"></script>
-    {% endblock %}
   </div>
+  <script type="module" src="/static/javascript/deleteTodo.js"></script>
+  <script type="module" src="/static/javascript/finished.js"></script>
+  {% endblock %}
 </div>

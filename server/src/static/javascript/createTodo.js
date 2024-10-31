@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // フォームのデフォルトの送信を防ぐ
 
     // フォームデータを取得
-    const taskName = document.getElementById("taskName")?.value;
-    const description = document.getElementById("description")?.value;
-    const limit_at = document.getElementById("limit_at")?.value;
-    const tag = document.getElementById("tag")?.value;
+    const taskName = document.getElementById("taskName").value;
+    const description = document.getElementById("description").value;
+    const limit_at = document.getElementById("limit_at").value;
+    const tag = document.getElementById("tag").value;
 
     if (tag == null || tag == "") {
       alert("タグを入力してください");
@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (result.ok) {
       const responseData = await result.json();
       console.log(responseData.message);
-      window.location.href = "/";
+      window.location.href = "/tag";
     } else {
       const errorData = await result.json(); // エラーレスポンスをJSON形式で取得
-      console.error("Error:", errorData);
+      window.location.href = `/error?${errorData.message}`;
     }
   });
 });

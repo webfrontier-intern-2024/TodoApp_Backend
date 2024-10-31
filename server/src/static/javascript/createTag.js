@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "/"; // リダイレクト
         console.log(responseData.message); // 成功メッセージを表示
       } else {
-        console.error("Error:", result.statusText); // エラーメッセージを表示
+        console.error("Error:", result.statusText);
+        window.location.href = `/error?${result.statusText}`;
+        // エラーメッセージを表示
       }
     });
   }

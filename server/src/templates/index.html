@@ -4,11 +4,15 @@ content %}
   <h2 class="text-2xl font-bold mb-4">Todoリスト一覧</h2>
   {% if todos %}
   <ul class="list-disc pl-5 flex flex-wrap">
-    {% for todo in todos %}
+    {% for todo in todos | sort(attribute='created_at', reverse=true) %} {%if
+    todo.finished == False%}
     <div class="bg-red-300 p-4 mt-4 mr-4 rounded-2xl max-h-fit">
+      {% else %}
+      <div class="bg-blue-300 p-4 mt-4 mr-4 rounded-2xl max-h-fit">
+        {% endif %}
       <li class="mb-2 list-none">
         <div>
-          <a class="text-blue-600" href="/todo/{{ todo.todoID }}"
+          <a class="text-blue-700 text-2xl" href="/todo/{{ todo.todoID }}"
             >{{ todo.taskName }}</a
           >
           <h3 class="text-gray-600">内容：{{ todo.description }}</h3>

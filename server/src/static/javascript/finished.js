@@ -1,18 +1,19 @@
 const url = new URL(window.location.href);
-const tagid = url.pathname.split("/")[2];
+const todoid = url.pathname.split("/")[2];
 
 document.addEventListener("DOMContentLoaded", function () {
-  const deletes = document.getElementById("deleteTag");
-  if (deletes) {
-    deletes.addEventListener("submit", async function (event) {
-      event.preventDefault();
+  const finish = document.getElementById("finished");
+  if (finish) {
+    finish.addEventListener("submit", async function (event) {
+      event.preventDefault(); // フォームのデフォルトの送信を防ぐ
 
       const data = {
-        tagID: tagid,
+        todoID: todoid,
+        finished: false,
       };
 
-      const result = await fetch(`/tag/${tagid}`, {
-        method: "DELETE",
+      const result = await fetch(`/finished/${todoid}`, {
+        method: "PUT", // POSTメソッドを指定
         headers: {
           "Content-Type": "application/json",
         },
@@ -22,8 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // レスポンスの処理
       if (result.ok) {
         const responseData = await result.json();
+        // リダイレクト
         console.log(responseData.message); // 成功メッセージを表示
-        window.location.href = "/tag";
+        window.location.href = "/";
       } else {
         console.error("Error:", result.statusText);
         window.location.href = `/error?${result.statusText}`;

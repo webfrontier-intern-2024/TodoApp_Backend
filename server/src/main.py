@@ -34,12 +34,18 @@ def root(
     return RedirectResponse(f"/todo?skip={skip}&limit={limit}&completed={completed}")
 
 
+@app.get("/error", response_class=HTMLResponse)
+def errorPage(request: Request):
+    return templates.TemplateResponse("error.html", {"request": request})
+
+
 # Todo・タグ作成などののページ遷移用エンドポイント
 ##########################################################################
 @app.get("/createTodo", response_class=HTMLResponse)
 def createTodoPage(request: Request):
     tags = getTableAllItems("tags")
-    if tags is None:
+    print(tags)
+    if tags == []:
         alert = "タグが登録されていません"
         return templates.TemplateResponse(
             "error.html", {"request": request, "error": alert}
@@ -118,10 +124,14 @@ async def createTodo(request: Request):
 
         # 必要なフィールドが含まれているか確認
         if "taskName" not in data or "description" not in data or "tagID" not in data:
-            return JSONResponse(
-                {"error": "すべてのフィールドを入力してください"}, status_code=400
+            return RedirectResponse(
+                "/error",
+                {"error": "すべてのフィールドを入力してください"},
+                status_code=400,
             )
 
+        if data["tagID"] is None:
+            return templates.TemplateResponse("error.html", {"request": request})
         # createItemを呼び出す
         createItem("todoLists", data)  # dataを渡す
 
@@ -129,21 +139,16 @@ async def createTodo(request: Request):
             content={"message": "Tag created successfully", "tag": data},
         )
     except ValueError:
-        return JSONResponse({"error": "Invalid JSON"}, status_code=400)
+        return RedirectResponse("/error", {"error": "Invalid JSON"}, status_code=400)
 
 
 @app.post("/tag", response_class=JSONResponse)
 async def createTag(request: Request):
     try:
         data = await request.json()
-        print(data)
-        tagData = createItem("tags", data)
+        req = createItem("tags", data)
 
-        # tagDataがCursorResult型の場合、適切な形式に変換する必要があります
-        tagDataDict = tagData.all() if hasattr(tagData, "all") else tagData
-        return JSONResponse(
-            content={"message": "Tag created successfully", "tag": tagDataDict}
-        )
+        return JSONResponse(content={"message": "Tag created successfully", "tag": req})
 
     except ValueError:
         return JSONResponse({"error": "Invalid JSON"}, status_code=400)
@@ -173,6 +178,21 @@ async def updateTag(request: Request, tag_id: str):
         content={
             "message": f"Update tag item with ID {tag_id}",
             "tag": editTag,
+        }
+    )
+
+
+@app.put("/finished/{todo_id}", response_class=JSONResponse)
+async def finished(request: Request, todo_id: str):
+    req = await request.json()
+
+    req["finished"] = not req["finished"]
+    # 現在の真偽値を反転
+    data = editData("todoLists", req, todo_id, "todoID")
+    return JSONResponse(
+        content={
+            "message": f"Update todo item with ID {todo_id}",
+            "todo": req,
         }
     )
 
